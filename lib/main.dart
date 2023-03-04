@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'screen/home_page.dart';
+import 'screen/home.dart';
+import 'screen/position.dart';
 
 void main() {
   runApp( MyApp());
