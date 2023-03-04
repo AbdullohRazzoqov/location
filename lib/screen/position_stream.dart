@@ -24,9 +24,16 @@ class _StreamPositionState extends State<StreamPosition> {
   }
 
   late StreamSubscription<Position> positionStream;
-  
+  late double latitude = 0.0;
+  late double longitude = 0.0;
+
   void getPositionStream() {
     positionStream = Geolocator.getPositionStream().listen((Position position) {
+      setState(() {
+        
+      });
+      latitude = position.latitude;
+      longitude = position.longitude;
       print(position.latitude);
       print(position.longitude);
     });
@@ -39,8 +46,19 @@ class _StreamPositionState extends State<StreamPosition> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    getPositionStream();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Center(
+        child: Column(
+          children: [Text('$latitude'), Text("$longitude")],
+        ),
+      ),
       appBar: AppBar(
         title: const Text("Position Stream"),
       ),
